@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: videochat-websocket
+    name: meet
     env: node
     region: oregon  # ou frankfurt, singapore selon votre localisation
     plan: free
@@ -17,3 +17,4 @@ services:
       name: data
       mountPath: /data
       sizeGB: 1
+
