@@ -2,15 +2,17 @@ services:
   - type: web
     name: videochat-websocket
     env: node
+    region: oregon  # ou frankfurt, singapore selon votre localisation
+    plan: free
     buildCommand: npm install
     startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 3000
-    healthCheckPath: /health
-    autoDeploy: true
+        value: 10000  # Render utilise généralement le port 10000
     disk:
       name: data
       mountPath: /data
