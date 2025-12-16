@@ -5,7 +5,11 @@ const url = require('url');
 // Serveur HTTP pour Render
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
-
+// Après la création du serveur WebSocket
+wss.on('headers', (headers, req) => {
+    headers['Access-Control-Allow-Origin'] = '*';
+    headers['Access-Control-Allow-Methods'] = 'GET, POST';
+});
 // Stockage des connexions
 const connections = new Map();
 const userRooms = new Map();
@@ -250,4 +254,5 @@ process.on('SIGTERM', () => {
             process.exit(0);
         });
     });
+
 });
